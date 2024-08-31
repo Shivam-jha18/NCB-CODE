@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCB Dashboard</title>
+    <link rel="stylesheet" href="ncb.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For charts -->
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-logo">
+            <img src="https://w7.pngwing.com/pngs/993/265/png-transparent-sarnath-museum-lion-capital-of-ashoka-pillars-of-ashoka-state-emblem-of-india-national-symbols-of-india-symbol.png" alt="Logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/NCBL_Logo.svg" alt="NCB">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/57/Narcotics_Control_Bureau_Seal.svg/140px-Narcotics_Control_Bureau_Seal.svg.png" alt="NCB Seal">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Submit A Tip</a></li>
+                <li><a href="#">Analytics</a></li>
+                <li><a href="#">Reports</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search..." id="searchInput">
+                <button onclick="performSearch()">Search</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Dashboard Section -->
+    <section class="dashboard">
+        <div class="dashboard-header">
+            <h2>NCB Monitoring Dashboard</h2>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="widget">
+                <h3>Live Channels/Bots</h3>
+                <p>Monitor and identify live channels and bots.</p>
+                <button onclick="loadChannels()">View Channels</button>
+            </div>
+
+            <div class="widget">
+                <h3>Instagram Handles</h3>
+                <p>Track Instagram handles offering drugs for sale.</p>
+                <button onclick="loadHandles()">View Handles</button>
+            </div>
+
+            <div class="widget">
+                <h3>IP/Mobile Tracking</h3>
+                <p>Triangulate IP addresses, mobile numbers, and email IDs.</p>
+                <button onclick="loadTracking()">Start Tracking</button>
+            </div>
+
+            <div class="widget">
+                <h3>Analytics</h3>
+                <p>Real-time data and trends.</p>
+                <canvas id="analyticsChart"></canvas>
+                <button onclick="loadAnalytics()">View Analytics</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>NCB © 2024. All rights reserved.</p>
+        <p>Last updated: <span id="lastUpdated"></span></p>
+    </footer>
+
+    <script src="ncb.js"></script>
+    <script>
+        // Display the current date and time for the last updated section
+        document.getElementById('lastUpdated').innerText = new Date().toLocaleString();
+
+        // Load analytics data and display it in a chart
+        function loadAnalytics() {
+            const ctx = document.getElementById('analyticsChart').getContext('2d');
+            const analyticsChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                    datasets: [{
+                        label: 'Reported Incidents',
+                        data: [65, 59, 80, 81, 56, 55],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Function to perform search (for demo purposes)
+        function performSearch() {
+            const query = document.getElementById('searchInput').value;
+            alert('Searching for: ' + query);
+            // Add actual search functionality here
+        }
+    </script>
+</body>
+</html>
